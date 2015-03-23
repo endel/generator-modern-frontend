@@ -1,0 +1,45 @@
+{
+  "private": true,
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "devDependencies": {
+    "autoprefixer-core": "^5.1.7",
+    "browser-sync": "^2.2.1",
+    "del": "^1.1.1",
+    "through2": "~0.6.3",
+    "browserify": "~9.0.3",
+    "babelify": "~5.0.4",
+    "gulp": "^3.8.11",
+    "gulp-postcss": "^4.0.3",
+
+<% if (cssPreprocessor == "sass") { %>
+    "gulp-sass": "^1.3.3",
+<% } else if (cssPreprocessor == "stylus") {%>
+    "gulp-stylus": "^2.0.1",
+<% } else if (cssPreprocessor == "less") {%>
+    "gulp-less": "^3.0.2",
+<% } %>
+
+<% if (cssPreprocessor != "sass") { /* include spritesmith for every cssPreprocessor except sass */ %>
+    "gulp.spritesmith": "~3.3.1",
+<% } %>
+
+    "gulp-cache": "^0.2.8",
+    "gulp-csso": "^1.0.0",
+    "gulp-if": "^1.2.5",
+    "gulp-imagemin": "^2.2.1",
+    "gulp-jshint": "^1.9.2",
+    "gulp-load-plugins": "^0.8.1",
+    "gulp-minify-html": "^1.0.0",
+    "gulp-size": "^1.2.1",
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-uglify": "^1.1.0",
+    "gulp-useref": "^1.1.1",
+    "gulp-babel": "~4.0.0",
+    "jshint-stylish": "^1.0.1",
+    "main-bower-files": "^2.5.0",
+    "opn": "^1.0.1",
+    "wiredep": "^2.2.2"
+  }
+}

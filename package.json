@@ -1,0 +1,33 @@
+{
+  "name": "generator-modern-frontend",
+  "version": "0.0.0",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "endel/generator-modern-frontend",
+  "author": {
+    "name": "Endel Dreyer",
+    "email": "endel.dreyer@gmail.com",
+    "url": "https://github.com/endel"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.18.9",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}
