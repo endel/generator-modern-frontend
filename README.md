@@ -1,12 +1,10 @@
 # generator-modern-frontend [![Build Status](https://secure.travis-ci.org/endel/generator-modern-frontend.png?branch=master)](https://travis-ci.org/endel/generator-modern-frontend)
 
-> [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process
+> [Yeoman](http://yeoman.io) generator that scaffolds out a modern front-end web app using [gulp](http://gulpjs.com/). Inspired by [generator-gulp-webapp](https://github.com/yeoman/generator-gulp-webapp).
 
 ![](screenshot.png)
 
 ## Features
-
-Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date information on what we support.
 
 * Browserify + ES6 (babelify)
 * Pick your favorite CSS pre-processor (Sass, Stylus or Less)
@@ -15,6 +13,8 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 * Built-in preview server with BrowserSync
 * Image optimization
 * Wire-up dependencies installed with [Bower](http://bower.io)
+
+Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date information on what we support.
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
 
