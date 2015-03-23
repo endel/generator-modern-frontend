@@ -1,8 +1,8 @@
 {
   "name": "generator-modern-frontend",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
-  "license": "MIT",
+  "version": "0.1.0",
+  "description": "Scaffold out a modern front-end web app",
+  "license": "BSD",
   "main": "app/index.js",
   "repository": "endel/generator-modern-frontend",
   "author": {
