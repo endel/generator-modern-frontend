@@ -3,6 +3,9 @@
   "engines": {
     "node": ">=0.12.0"
   },
+  "scripts": {
+    "start": "gulp serve"
+  },
   "devDependencies": {
     "autoprefixer-core": "^5.1.7",
     "browser-sync": "^2.2.1",
