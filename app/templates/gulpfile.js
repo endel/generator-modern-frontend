@@ -65,10 +65,16 @@ gulp.task('javascript', function () {
       browserify(file.path)
       .transform('babelify')
       .bundle(function(err, res){
+        if (err) { return next(err); }
+
         file.contents = res;
         next(null, file);
       });
     }))
+    .on('error', function (error) {
+      console.log(error.stack);
+      this.emit('end');
+    })
     .pipe($.sourcemaps.init())
     // .pipe($.uglify())
     .pipe($.sourcemaps.write('.'))
