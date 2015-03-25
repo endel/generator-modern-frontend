@@ -22,9 +22,14 @@ gulp.task('stylesheet', ['sprites'], function () {
       onError: console.error.bind(console, 'Sass error:')
     }))<% } else if (cssPreprocessor == "stylus") { %>
     .pipe($.stylus({
-      import: ['sprites/*'] // auto-import sprite files
+      import: ['sprites/*'], // auto-import sprite files
+      errors: true
     }))<% } else if (cssPreprocessor == "less") { %>
     .pipe($.less())<% } %>
+    .on('error', function (error) {
+      console.log(error.stack);
+      this.emit('end');
+    })
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 1 version']})
     ]))
