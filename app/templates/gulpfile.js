@@ -80,11 +80,11 @@ gulp.task('javascript', function () {
       console.log(error.stack);
       this.emit('end');
     })
+    .pipe(gulp.dest('dist/js'))
     .pipe($.sourcemaps.init())
     // .pipe($.uglify())
     .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest('.tmp/js'))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('.tmp/js'));
 });
 
 gulp.task('jshint', function () {
@@ -193,7 +193,7 @@ gulp.task('wiredep', function () {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['jshint', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['jshint', 'html', 'javascript', 'stylesheet', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
