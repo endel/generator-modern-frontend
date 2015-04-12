@@ -96,6 +96,11 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('emptyfile'),
         this.destinationPath('app/css/sprites/index' + this.cssExtension)
       );
+
+      this.fs.copy(
+        this.templatePath('emptyfile'),
+        this.destinationPath('app/images/sprites/.gitkeep')
+      );
     },
 
     packageJSON: function () {
