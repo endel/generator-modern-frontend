@@ -4,9 +4,11 @@
     "node": ">=0.12.0"
   },
   "scripts": {
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "postinstall": "bower install",
   },
   "devDependencies": {
+    "bower": "^1.4.1",
     "autoprefixer-core": "^5.1.7",
     "browser-sync": "^2.2.1",
     "del": "^1.1.1",
