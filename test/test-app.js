@@ -11,7 +11,7 @@ describe('modern-frontend:app', function () {
       .inDir(path.join(os.tmpdir(), './temp-test'))
       .withOptions({ 'skip-install': true })
       .withPrompt({
-        someOption: true
+        cssPreprocessor: 'stylus'
       })
       .on('end', done);
   });
@@ -20,6 +20,7 @@ describe('modern-frontend:app', function () {
     assert.file([
       'bower.json',
       'package.json',
+      'gulpfile.js',
       '.editorconfig',
       '.jshintrc'
     ]);
