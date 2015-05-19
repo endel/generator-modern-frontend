@@ -159,7 +159,7 @@ gulp.task('serve', ['stylesheet', 'javascript', 'fonts'], function () {
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
-  gulp.watch('app/css/**/*<%= cssExtension %>', ['stylesheet']);
+  gulp.watch(['app/css/**/*<%= cssExtension %>', '!app/css/sprites/*<%= cssExtension %>'], ['stylesheet']);
   gulp.watch('app/js/**/*.js', ['javascript']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
