@@ -15,6 +15,7 @@
     "through2": "~0.6.3",
     "browserify": "~9.0.3",
     "babelify": "~5.0.4",
+    "envify": "^3.4.0",
     "gulp": "^3.8.11",
     "gulp-postcss": "^4.0.3",
 

@@ -69,6 +69,7 @@ gulp.task('javascript', function () {
     .pipe(through2.obj(function (file, enc, next){ // workaround for https://github.com/babel/babelify/issues/46
       browserify(file.path)
       .transform('babelify')
+      .transform('envify')
       .bundle(function(err, res){
         if (err) { return next(err); }
 
