@@ -155,7 +155,7 @@ gulp.task('serve', ['stylesheet', 'javascript', 'fonts'], function () {
   // watch for changes
   gulp.watch([
     'app/*.html',
-    'app/js/**/*.js',
+    '.tmp/js/*.js',
     'app/images/**/*',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
