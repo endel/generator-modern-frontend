@@ -14,6 +14,19 @@
 * Image optimization
 * Wire-up dependencies installed with [Bower](http://bower.io)
 
+#### Sprite sheet
+
+For sprite generation, you'll need to create a directory for each sprite
+category on `app/images/sprites/`. It will generate its respective stylesheet
+and sprite sheet files as the following:
+
+- `app/images/sprites/general/*.png` generates:
+  - `css/sprites/general.styl`
+  - `images/sprites_general.png`
+- `app/images/sprites/heavy_stuff/*.png` generates:
+  - `css/sprites/heavy_stuff.styl`
+  - `images/sprites_heavy_stuff.png`
+
 Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date information on what we support.
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
