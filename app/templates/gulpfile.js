@@ -48,7 +48,7 @@ gulp.task('sprites', function() {
   for (var i = 0; i < identifiers.length; i++) {
     var spriteData = gulp.src(spritesPath + '/' + identifiers[i] + '/*.png').pipe($.spritesmith({
       imgName: 'sprite_' + identifiers[i] + '.png',
-      cssName: identifiers[i] + '.<%= cssExtension %>',
+      cssName: identifiers[i] + '<%= cssExtension %>',
       imgPath: '../images/sprite_' + identifiers[i] + '.png',
       cssFormat: '<%= cssPreprocessor %>'
     }));
