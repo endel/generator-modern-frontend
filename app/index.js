@@ -32,8 +32,11 @@ module.exports = yeoman.generators.Base.extend({
         value: 'stylus',
         checked: true
       }, {
-        name: 'Sass',
+        name: 'SASS',
         value: 'sass'
+      }, {
+        name: 'SCSS',
+        value: 'scss'
       }, {
         name: 'Less',
         value: 'less'

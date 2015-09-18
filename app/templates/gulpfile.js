@@ -14,7 +14,7 @@ var browserify = require('browserify');
 
 gulp.task('stylesheet', ['sprites'], function () {
   return gulp.src('app/css/main<%= cssExtension %>')
-    .pipe($.sourcemaps.init())<% if (cssPreprocessor == "sass") { %>
+    .pipe($.sourcemaps.init())<% if (cssPreprocessor == "sass" || cssPreprocessor == "scss") { %>
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
