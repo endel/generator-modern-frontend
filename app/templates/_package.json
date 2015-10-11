@@ -43,7 +43,6 @@
     "gulp-babel": "~4.0.0",
     "jshint-stylish": "^1.0.1",
     "main-bower-files": "^2.5.0",
-    "opn": "^1.0.1",
     "wiredep": "^2.2.2"
   }
 }

@@ -52,7 +52,8 @@ module.exports = yeoman.generators.Base.extend({
       var cssExtensions = {
         "none": ".css",
         "stylus": ".styl",
-        "sass": ".scss",
+        "scss": ".scss",
+        "sass": ".sass",
         "less": ".less"
       };
       this.cssExtension = cssExtensions[this.cssPreprocessor];
