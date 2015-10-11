@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var mkdirp = require('mkdirp');
 
 module.exports = yeoman.generators.Base.extend({
   constructor: function () {
@@ -64,11 +65,11 @@ module.exports = yeoman.generators.Base.extend({
 
   writing: {
     app: function () {
-      this.mkdir('app');
-      this.mkdir('app/js');
-      this.mkdir('app/css');
-      this.mkdir('app/images');
-      this.mkdir('app/fonts');
+      mkdirp.sync('app');
+      mkdirp.sync('app/js');
+      mkdirp.sync('app/css');
+      mkdirp.sync('app/images');
+      mkdirp.sync('app/fonts');
       this.copy('main.js', 'app/js/main.js');
 
       this.fs.copy(
@@ -93,8 +94,8 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     sprites: function() {
-      this.mkdir('app/css/sprites');
-      this.mkdir('app/images/sprites');
+      mkdirp.sync('app/css/sprites');
+      mkdirp.sync('app/images/sprites');
 
       this.fs.copy(
         this.templatePath('emptyfile'),
