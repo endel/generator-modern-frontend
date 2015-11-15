@@ -12,9 +12,11 @@ var reload = browserSync.reload;
 var through2 = require('through2');
 var browserify = require('browserify');
 
+var isDevelopment = (process.env.ENVIRONMENT !== "production");
+
 gulp.task('stylesheet', ['sprites'], function () {
   return gulp.src('app/css/main<%= cssExtension %>')
-    .pipe($.sourcemaps.init())<% if (cssPreprocessor == "sass" || cssPreprocessor == "scss") { %>
+    .pipe($.if(isDevelopment, $.sourcemaps.init()))<% if (cssPreprocessor == "sass" || cssPreprocessor == "scss") { %>
     .pipe($.sass({
       outputStyle: 'nested', // libsass doesn't support expanded yet
       precision: 10,
@@ -33,7 +35,7 @@ gulp.task('stylesheet', ['sprites'], function () {
     .pipe($.postcss([
       require('autoprefixer-core')({browsers: ['last 1 version']})
     ]))
-    .pipe($.sourcemaps.write())
+    .pipe($.if(isDevelopment, $.sourcemaps.write()))
     .pipe(gulp.dest('.tmp/css'))
     .pipe(reload({stream: true}));
 });
@@ -67,7 +69,10 @@ gulp.task('sprites', function() {
 gulp.task('javascript', function () {
   return gulp.src('app/js/main.js')
     .pipe(through2.obj(function (file, enc, next){ // workaround for https://github.com/babel/babelify/issues/46
-      browserify(file.path).bundle(function(err, res){
+      browserify({
+        entries: file.path,
+        debug: isDevelopment
+      }).bundle(function(err, res){
         if (err) { return next(err); }
 
         file.contents = res;
@@ -79,9 +84,8 @@ gulp.task('javascript', function () {
       this.emit('end');
     })
     .pipe(gulp.dest('dist/js'))
-    .pipe($.sourcemaps.init())
-    // .pipe($.uglify())
-    .pipe($.sourcemaps.write('.'))
+    .pipe($.if(isDevelopment, $.sourcemaps.init({loadMaps: true})))
+    .pipe($.if(isDevelopment, $.sourcemaps.write('.')))
     .pipe(gulp.dest('.tmp/js'));
 });
 
@@ -93,7 +97,7 @@ gulp.task('jshint', function () {
     .pipe($.if(!browserSync.active, $.jshint.reporter('fail')));
 });
 
-gulp.task('html', ['stylesheet'], function () {
+gulp.task('html', ['javascript', 'stylesheet'], function () {
   var assets = $.useref.assets({searchPath: ['.tmp', 'app/*.html', '.']});
 
   return gulp.src('app/*.html')
@@ -191,7 +195,7 @@ gulp.task('wiredep', function () {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['jshint', 'javascript', 'stylesheet', 'html', 'images', 'fonts', 'extras'], function () {
+gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
