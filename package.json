@@ -1,6 +1,6 @@
 {
   "name": "generator-modern-frontend",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Scaffold out a modern front-end web app",
   "license": "BSD",
   "main": "app/index.js",

@@ -10,7 +10,7 @@ describe('modern-frontend:app', function () {
     helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(os.tmpdir(), './temp-test'))
       .withOptions({ 'skip-install': true })
-      .withPrompt({
+      .withPrompts({
         cssPreprocessor: 'stylus'
       })
       .on('end', done);

@@ -141,9 +141,9 @@ module.exports = yeoman.generators.Base.extend({
       skipInstall: this.options['skip-install']
     });
   },
-  
+
   end: function () {
-    this.log(yosay('All done! Run `gulp serve` to preview your app and watch for changes.'));
+    this.log(yosay('All done! Run `npm start` to preview your app and watch for changes.'));
   }
-  
+
 });

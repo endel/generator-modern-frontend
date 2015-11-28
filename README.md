@@ -36,7 +36,7 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 - Install dependencies: `npm install --global yo bower`
 - Install the generator: `npm install --global generator-modern-frontend`
 - Run `yo modern-frontend` to scaffold your webapp
-- Run `gulp serve` to preview and watch for changes
+- Run `npm start` to preview and watch for changes
 - Run `bower install --save <package>` to install frontend dependencies
 - Run `gulp` to build for production
 
