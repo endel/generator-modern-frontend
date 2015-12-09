@@ -22,7 +22,8 @@ describe('modern-frontend:app', function () {
       'package.json',
       'gulpfile.js',
       '.editorconfig',
-      '.jshintrc'
+      '.jshintrc',
+      '.babelrc'
     ]);
   });
 });
