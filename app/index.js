@@ -45,11 +45,24 @@ module.exports = yeoman.generators.Base.extend({
         name: 'None (plain css)',
         value: 'none'
       }]
+    }, {
+      type: 'checkbox',
+      name: 'features',
+      message: 'UNCHECK the features you WON\'T use:',
+      choices: [{
+        name: 'Bower',
+        checked: true
+      }, {
+        name: 'CSS Sprites (spritesmith)',
+        checked: true
+      }, {
+        name: 'Image optimization (imagemin)',
+        checked: true
+      }]
     }];
 
     this.prompt(prompts, function (props) {
       this.cssPreprocessor = props.cssPreprocessor;
-
       var cssExtensions = {
         "none": ".css",
         "stylus": ".styl",
@@ -58,6 +71,15 @@ module.exports = yeoman.generators.Base.extend({
         "less": ".less"
       };
       this.cssExtension = cssExtensions[this.cssPreprocessor];
+
+      this.features = {
+        bower: props.features.filter(function(f) { return f.indexOf(/bower/i) >= 0 }).length > 0,
+        spritesmith: props.features.filter(function(f) { return f.indexOf(/spritesmith/i) >= 0 }).length > 0,
+        imagemin: props.features.filter(function(f) { return f.indexOf(/imagemin/i) >= 0 }).length > 0,
+      }
+
+      // console.log(this.features)
+      // process.exit()
 
       done();
     }.bind(this));
@@ -77,15 +99,7 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.babelrc')
       );
 
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
-
-      this.fs.copy(
-        this.templatePath('index.html'),
-        this.destinationPath('app/index.html')
-      );
+      this.template('index.html', 'app/index.html');
 
       this.fs.copy(
         this.templatePath('main' + this.cssExtension),
@@ -96,21 +110,30 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('favicon.ico'),
         this.destinationPath('favicon.ico')
       );
-    },
 
-    sprites: function() {
-      mkdirp.sync('app/css/sprites');
-      mkdirp.sync('app/images/sprites');
+      // copy bower files only if requested
+      if (this.features.bower) {
+        this.fs.copy(
+          this.templatePath('_bower.json'),
+          this.destinationPath('bower.json')
+        );
+      }
 
-      this.fs.copy(
-        this.templatePath('emptyfile'),
-        this.destinationPath('app/css/sprites/index' + this.cssExtension)
-      );
+      if (this.features.spritesmith) {
+        mkdirp.sync('app/css/sprites');
+        mkdirp.sync('app/images/sprites');
 
-      this.fs.copy(
-        this.templatePath('emptyfile'),
-        this.destinationPath('app/images/sprites/.gitkeep')
-      );
+        this.fs.copy(
+          this.templatePath('emptyfile'),
+          this.destinationPath('app/css/sprites/index' + this.cssExtension)
+        );
+
+        this.fs.copy(
+          this.templatePath('emptyfile'),
+          this.destinationPath('app/images/sprites/.gitkeep')
+        );
+      }
+
     },
 
     packageJSON: function () {

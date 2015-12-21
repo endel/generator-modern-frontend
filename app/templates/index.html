@@ -4,22 +4,26 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= appname %></title>
+    <title>Generated with @endel/generator-modern-frontend</title>
 
     <!-- Place favicon.ico in the root directory -->
 
+<% if (features.bower) { %>
     <!-- build:css css/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
+<% } %>
 
     <!-- build:css css/main.css -->
     <link rel="stylesheet" href="css/main.css">
     <!-- endbuild -->
 
+<% if (features.bower) { %>
     <!-- build:js js/vendor/modernizr.js -->
     <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+<% } %>
   </head>
   <body>
     <!--[if lt IE 10]>
@@ -36,10 +40,12 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
+<% if (features.bower) { %>
     <!-- build:js js/vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
+<% } %>
 
     <!-- build:js js/main.js -->
     <script src="js/main.js"></script>
