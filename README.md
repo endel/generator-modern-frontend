@@ -14,6 +14,9 @@
 * Image optimization
 * Wire-up dependencies installed with [Bower](http://bower.io)
 
+You may opt-out from using bower, sprite generation and image optimization if
+you don't need them.
+
 #### Sprite sheet
 
 For sprite generation, you'll need to create a directory for each sprite

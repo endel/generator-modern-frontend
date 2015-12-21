@@ -23,8 +23,8 @@
     "gulp-postcss": "^4.0.3",<% if (cssPreprocessor == "sass" || cssPreprocessor == "scss") { %>
     "gulp-sass": "^2.0.4",<% } else if (cssPreprocessor == "stylus") {%>
     "gulp-stylus": "^2.0.1",<% } else if (cssPreprocessor == "less") {%>
-    "gulp-less": "^3.0.2",<% } %>
-    "gulp.spritesmith": "~3.3.1",
+    "gulp-less": "^3.0.2",<% } %><% if (features.spritesmith) { %>
+    "gulp.spritesmith": "~3.3.1",<% } %>
     "gulp-csso": "^1.0.0",
     "gulp-if": "^1.2.5",<% if (features.imagemin) { %>
     "gulp-imagemin": "^2.2.1",

@@ -14,7 +14,8 @@ var browserify = require('browserify');
 
 var isDevelopment = (process.env.ENVIRONMENT !== "production");
 
-gulp.task('stylesheet', ['sprites'], function () {
+
+gulp.task('stylesheet', <% if (features.spritesmith) { %>['sprites'], <% } %>function () {
   return gulp.src('app/css/main<%= cssExtension %>')
     .pipe($.if(isDevelopment, $.sourcemaps.init()))<% if (cssPreprocessor == "sass" || cssPreprocessor == "scss") { %>
     .pipe($.sass({
@@ -23,8 +24,8 @@ gulp.task('stylesheet', ['sprites'], function () {
       includePaths: ['.'],
       onError: console.error.bind(console, 'Sass error:')
     }))<% } else if (cssPreprocessor == "stylus") { %>
-    .pipe($.stylus({
-      import: ['sprites/*'], // auto-import sprite files
+    .pipe($.stylus({<% if (features.spritesmith) { %>
+      import: ['sprites/*'], // auto-import sprite files <% } %>
       errors: true
     }))<% } else if (cssPreprocessor == "less") { %>
     .pipe($.less())<% } %>
@@ -40,6 +41,7 @@ gulp.task('stylesheet', ['sprites'], function () {
     .pipe(reload({stream: true}));
 });
 
+<% if (features.spritesmith) { %>
 gulp.task('sprites', function() {
   var spritesPath = 'app/images/sprites';
   var identifiers = fs.readdirSync(spritesPath).filter(function(spritePath) {
@@ -65,6 +67,7 @@ gulp.task('sprites', function() {
       .pipe(gulp.dest('app/css/sprites'));
   }
 });
+<% } %>
 
 gulp.task('javascript', function () {
   return gulp.src('app/js/main.js')
@@ -111,21 +114,22 @@ gulp.task('html', ['javascript', 'stylesheet'], function () {
 });
 
 gulp.task('images', function () {
-  return gulp.src('app/images/**/*')
+  return gulp.src('app/images/**/*')<% if (features.imagemin) { %>
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true,
       // don't remove IDs from SVGs, they are often used
       // as hooks for embedding and styling
       svgoPlugins: [{cleanupIDs: false}]
-    })))
+    })))<% } %>
     .pipe(gulp.dest('dist/images'));
 });
 
 gulp.task('fonts', function () {
-  return gulp.src(require('main-bower-files')({
+  var pattern = 'app/fonts/**/*'
+  return gulp.src(<% if (features.bower) { %>require('main-bower-files')({
     filter: '**/*.{eot,svg,ttf,woff,woff2}'
-  }).concat('app/fonts/**/*'))
+  }).concat(pattern)<% } else { %>pattern<% } %>)
     .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
 });
@@ -161,10 +165,10 @@ gulp.task('serve', ['stylesheet', 'javascript', 'fonts'], function () {
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
-  gulp.watch(['app/css/**/*<%= cssExtension %>', '!app/css/sprites/*<%= cssExtension %>'], ['stylesheet']);
+  gulp.watch(['app/css/**/*<%= cssExtension %>', <% if (features.spritesmith) { %>'!app/css/sprites/*<%= cssExtension %>'], <% } %>['stylesheet']);
   gulp.watch('app/js/**/*.{js,jsx}', ['javascript']);
-  gulp.watch('app/fonts/**/*', ['fonts']);
-  gulp.watch('bower.json', ['wiredep', 'fonts']);
+  gulp.watch('app/fonts/**/*', ['fonts']);<% if (features.spritesmith) { %>
+  gulp.watch('bower.json', ['wiredep', 'fonts']);<% } %>
 });
 
 gulp.task('serve:dist', function () {

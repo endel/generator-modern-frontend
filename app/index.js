@@ -73,13 +73,10 @@ module.exports = yeoman.generators.Base.extend({
       this.cssExtension = cssExtensions[this.cssPreprocessor];
 
       this.features = {
-        bower: props.features.filter(function(f) { return f.indexOf(/bower/i) >= 0 }).length > 0,
-        spritesmith: props.features.filter(function(f) { return f.indexOf(/spritesmith/i) >= 0 }).length > 0,
-        imagemin: props.features.filter(function(f) { return f.indexOf(/imagemin/i) >= 0 }).length > 0,
+        bower: props.features.filter(function(f) { return f.match(/bower/i) }).length > 0,
+        spritesmith: props.features.filter(function(f) { return f.match(/spritesmith/i) }).length > 0,
+        imagemin: props.features.filter(function(f) { return f.match(/imagemin/i) }).length > 0,
       }
-
-      // console.log(this.features)
-      // process.exit()
 
       done();
     }.bind(this));

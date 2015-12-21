@@ -11,7 +11,8 @@ describe('modern-frontend:app', function () {
       .inDir(path.join(os.tmpdir(), './temp-test'))
       .withOptions({ 'skip-install': true })
       .withPrompts({
-        cssPreprocessor: 'stylus'
+        cssPreprocessor: 'stylus',
+        features: ['bower', 'spritesmith', 'imagemin']
       })
       .on('end', done);
   });
