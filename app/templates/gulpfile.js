@@ -165,7 +165,7 @@ gulp.task('serve', ['stylesheet', 'javascript', 'fonts'], function () {
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
-  gulp.watch(['app/css/**/*<%= cssExtension %>', <% if (features.spritesmith) { %>'!app/css/sprites/*<%= cssExtension %>'], <% } %>['stylesheet']);
+  gulp.watch(['app/css/**/*<%= cssExtension %>'<% if (features.spritesmith) { %>, '!app/css/sprites/*<%= cssExtension %>'<% } %>], ['stylesheet']);
   gulp.watch('app/js/**/*.{js,jsx}', ['javascript']);
   gulp.watch('app/fonts/**/*', ['fonts']);<% if (features.spritesmith) { %>
   gulp.watch('bower.json', ['wiredep', 'fonts']);<% } %>
