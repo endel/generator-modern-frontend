@@ -1,3 +1,5 @@
+**NOT MAINTAINING THIS PROJECT**: Use webpack instead.
+
 # generator-modern-frontend [![Build Status](https://secure.travis-ci.org/endel/generator-modern-frontend.png?branch=master)](https://travis-ci.org/endel/generator-modern-frontend)
 
 > [Yeoman](http://yeoman.io) generator that scaffolds out a modern front-end web app using [gulp](http://gulpjs.com/). Inspired by [generator-gulp-webapp](https://github.com/yeoman/generator-gulp-webapp).
